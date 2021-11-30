@@ -1,14 +1,13 @@
-const env = process.env;
+const Pool = require("pg").Pool;
 
 const config = {
-  db: { /* do not put password or any sensitive info here, done only for demo */
-    host: env.DB_HOST || 'ec2-44-193-111-218.compute-1.amazonaws.com',
-    port: env.DB_PORT || '5432',
-    user: env.DB_USER || 'jefmspteharqdn',
-    password: env.DB_PASSWORD || 'bcda48859599e49a05ea7c4e90913798d6ffac26bfa64416bc787c318f8d1bda',
-    database: env.DB_NAME || 'dih9o4blv40v0',
-  },
-  listPerPage: env.LIST_PER_PAGE || 10,
+  db: {
+    user: "jefmspteharqdn",
+    password: "bcda48859599e49a05ea7c4e90913798d6ffac26bfa64416bc787c318f8d1bda",
+    database: "dih9o4blv40v0",  
+    host: "ec2-44-193-111-218.compute-1.amazonaws.com",
+    port: 5432
+  }
 };
 
 // const config = {
@@ -29,7 +28,7 @@ const config = {
 //     user: "jefmspteharqdn",
 //     password: "bcda48859599e49a05ea7c4e90913798d6ffac26bfa64416bc787c318f8d1bda",
 //     database: "dih9o4blv40v0",
-//     host: "localhost",
+//     host: "ec2-44-193-111-218.compute-1.amazonaws.com",
 //     port: 5432
 // });
 

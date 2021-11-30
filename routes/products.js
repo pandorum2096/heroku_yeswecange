@@ -9,7 +9,7 @@ const config = require('../config');
 /* GET All products */
 router.get('/products', async function(req, res, next) {
   try {
-    const allProducts = await config.query("SELECT * FROM Product");
+    const allProducts = await config.db.query("SELECT * FROM Product");
     res.json({ products: allProducts.rows});
   } catch (err) {
     console.error(`Error while getting products `, err.message);
@@ -21,7 +21,7 @@ router.get('/products', async function(req, res, next) {
 router.get('/products/:id', async function(req, res, next) {
     const {id} = req.params;
   try {
-    const product = await config.query("SELECT * FROM Product WHERE id=$1", [id]);
+    const product = await config.db.query("SELECT * FROM Product WHERE id=$1", [id]);
     res.json({ product: product.rows[0] });
   } catch (err) {
     console.error(`Error while getting products `, err.message);
@@ -36,7 +36,7 @@ router.post('/products', async function(req, res, next) {
         const {description} = req.body;
         const {price} = req.body;
         const {inStock} = req.body;
-        const newProducts = await config.query("INSERT INTO Product (name,description,price,inStock) VALUES ($1,$2,$3,$4) RETURNING *", [name, description, price, inStock]);
+        const newProducts = await config.db.query("INSERT INTO Product (name,description,price,inStock) VALUES ($1,$2,$3,$4) RETURNING *", [name, description, price, inStock]);
         res.json(newProducts.rows[0]);
   } catch (err) {
     console.error(`Error while posting products `, err.message);
@@ -52,7 +52,7 @@ router.put('/products/:id', async function(req, res, next) {
         const {description} = req.body;
         const {price} = req.body;
         const {inStock} = req.body;
-        const updateProducts = await config.query("UPDATE Product SET name=$1,description=$2,price=$3,inStock=$4 WHERE id=$5", [name, description, price, inStock, id]);
+        const updateProducts = await config.db.query("UPDATE Product SET name=$1,description=$2,price=$3,inStock=$4 WHERE id=$5", [name, description, price, inStock, id]);
         res.json({ message: 'Modified!' });
   } catch (err) {
     console.error(`Error while posting products `, err.message);
@@ -64,7 +64,7 @@ router.put('/products/:id', async function(req, res, next) {
 router.delete('/products/:id', async function(req, res, next) {
   try {
         const {id} = req.params;
-        const deleteProducts = await config.query("DELETE FROM Product WHERE id=$1", [id]);
+        const deleteProducts = await config.db.query("DELETE FROM Product WHERE id=$1", [id]);
         res.json({ message: 'Deleted!' });
   } catch (err) {
     console.error(`Error while getting products `, err.message);

@@ -4,8 +4,11 @@ const config = new Pool({
     user: "jefmspteharqdn",
     password: "bcda48859599e49a05ea7c4e90913798d6ffac26bfa64416bc787c318f8d1bda",
     database: "dih9o4blv40v0",
-    host: "ec2-44-193-111-218.compute-1.amazonaws.com",
+    host: "18.207.212.176",
     port: 5432
 });
 
 module.exports = config;
+
+
+//psql -h "ec2-44-193-111-218.compute-1.amazonaws.com" -p 5432 -d dih9o4blv40v0 -U jefmspteharqdn -W

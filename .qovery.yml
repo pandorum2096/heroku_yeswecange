@@ -1,0 +1,11 @@
+---
+application:
+  name: ""
+  project: ""
+  organization: ""
+routers:
+  - name: ""
+    routes:
+      - application_name: ""
+        paths:
+          - "/*"
